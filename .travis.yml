@@ -10,7 +10,7 @@ env:
     - secure: "ZLSJOH7T2LDIWXy02JY0DS26YXPHee4D177Ei/XbfKsVFczNpvpYgdKsFUghxeToSCAn8hAEEPNOFu9Uea9rx4tb5FSC3P6/lpv2bk4B3mc+oHJTGTrlbone5jJYqXJnBSiDx6cuR9BZkAh8XjFiHe+ZkUTYN9Ct/4s8dhcLaQiTdLKVxBz+MXPEJOZCBbompkc3L9Dkl8AofR9jX7q7Vb/u/YPBgwAlnGm0QAQPr3T9odxMrdBzpRpO3LEvQJMStJ8P26d0qgRmsVn1g1q3nx3p7Owe1oC5AcP+BI/0qVcdV8OmjfxZxeN8DuV/oZe9X5pWEJXJvBd6K9Li58mi5nP4AxUM3fNljqNtKKOcDxrocS/XVi00WrE2Ltl4ioLrmB3gXsmBBjiYzH/sIOHFX336KAlaKOxG2F6EdL8XQNHcMehiYDyI0bS+CUS3ZMx9ecVNwfw9kuXDAmFWB1S9s4ygz5d2/RlPAPG7vKWEU+OEe+M+sb3OSqmu6VTTGfV/9vF8D2sEHaJIFcncBlNAcmMhyF5+SBMdKOJHHy4/e50RjvuvnRa/EIBUgwK+0dNLwR4AkekMzKQAE8y2X7vROejlIbBKDGQhgURDY06nwPgGibrMUJ+8Kdl/v6pkjFkVXlYXaQWnvdkz6TtQXOugydbnTvtm1wtYkSKdpXyz5ps="
 
 before_install:
-  - env
+  - env | grep TRAVIS
   - docker version
   - docker build -t ping .
 
