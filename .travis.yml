@@ -1,16 +1,22 @@
 language: python
 sudo: required
+
 services:
-- docker
+  - docker
+
 before_install:
-- docker version
-- docker build -t ptdorf/ping .
+  - docker version
+  - docker build -t ptdorf/ping .
+
 script:
-- docker run ptdorf/ping google.com
+  - docker run ptdorf/ping google.com
+
 after_success:
-- if [ "$TRAVIS_BRANCH" == "master" ]; then docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-  docker push ptdorf/ping; fi
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+    docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+    docker push ptdorf/ping;
+    fi
+
 env:
-  secure: NBgUXIOUwsL6uHxN1aATEtgAGVm0JcLZfcKRQx8Hg/SPUSB948U03NeQLe0ewXsW8Z18DUgCn4j5BwqziL9Mz9Dk39h/mVLEh8WBkA7Vv2B2L1+wFVx/3s1yvW4Puz4jU7I4uWu3dFmj9cwh7t/GiGpN/3YKLs7BDEcV8uE5IR9UE8WVWtoVSK3PW7QhpCZcFd3Lic19WziN0eE8zK2/gazdGf5nK6Ri93gKz33SYy4lgotzd2rNWEwC3XwkaogtC2qTHfpSIm+z0wSE/J3akBNt4Q1Ij+Iz8JjXFV0uYmTbbBdJqql4tWE7UMLqmaBbOYafM+HjsgmsrwAtXizrJMktCiRk+F6dyqp6R+QrRc6OUw/CpYYoP5wSq0/TB0Ccexe0SP1AKYv+0T8dvWZqDP9/OrfLP7oLL70LTNBbMX3z7WJ4pbzAcrOTN620c8m1RX2KZgif1s7SO9cCscQqiV/w+Df0KN2wN1fGNPuevInxZpp5syKSPqxGcwL234VpxtLreMFojfFg9gEJJ7cHKg4UkZDjuRrkbNmxrrCtMKjouLywnt5TmtZDnPBgkfX9rbPEGMsEUyyNYHs7mMgeVNnVD+m5VjgyEJcqWdvb3UVCgmTAqQE2t6LiggrrQxbU5VGajkks4cYdq9C5lW/DaKwDcDd5IYyrY/oPUHyRVkI=
-  matrix:
-    secure: QUE8k5NNnM2euCObT2+LHb5ZeW+aieIFEoWCbnAf8CeeYHQ+YX1G+F4fMii2Bv7gg55b4sZ3aFhdINCkSBVq5rJNFi7f0Hja9GuiPef0Dlcj43CmDkGKwXC21Cu1Z0TxEdbAeK/m31BWwB+V1B7SGa/A4Ay45QnLppbJMqRXklTpMM1JkNwa8DuiU2E0GOCQSMeziMQ/PmDPP0JyttxDsh7rH5HEu4dQqLJCEpYSqh2k+vl+w4pmTPVJAML0EQs1DhFXScXWrrXkiGRNb33ylqLefScklmhlaa4ddKbzTEc9YVJ7J19BbKrSwX9j/Qd4UrlWNJOH4VM1kwAsJ5hzzcMm1k+77jnzwFKoW4S/YO9mDJ7E7au7hPYhu9Ih05SgXB2Ccb7Vp7fgdOogj6mUGzsKNdU6shOPMVeH1pOZ6GAk0LvTavVn++lAoAKS4xjTeT3IWQ7VnQQ9FpnUoxgwEVxuqVtlFpcaknwPUcCu5AtAE+9COxUyunuBDjhJUzxSTazUxvrkZodOzc8daDLBW9/njZpCvdauO37jQxP9oRNRcNg0pzjeWEpDEIdK+8YjYlQkvoD07mEVDU86FJTveFXIibds5ZnNhYHEY/eM2UFLs5lLWn/H3EMANaOnJmMMX+gAjcsdajRsZ9c88HRoLl3s2PhleqHhr6bxiF0aPwQ=
+  - secure: "Ie9P42G0MwVjT6jQRg5+etg8wuCCusWiyziaLpUS3OGaeEeNvQIpoybeJCTVxGmEhJ7DnMk3+Aqmkh8KbcX462gkDEqzkintD8TbDlUzxe1Hlw8TPpHlc7Rj/60dvj9xat4cR1vM+of57fuSXeveytvaODpEWmJCArYqJiO2b1OKiFNkaXmzaer48yS2YM0EBoxGOOn+iBVSr0/05GmPa/6wCmk8wMTZL8ywoBO0u5VRs6oPeRA6zu72zP47RPyxezAgWVyh3pEym11t2lNkWSk0RB4uMB7ciZkEnGpSV74i0P5CjPXFl8pvIyz1J3XJS69u9uELvNdGyMMnPWxcLad7ug9zSjrFzfups6TkoZj0xgmAMgUvNhW2jpks/7XyyJZ6i9TLNcIkGveXrfEt3YY+3lds/6jinh84TG3sSWalNPr4yhVje+8hzPGjG9LR9fRgnQnwYtgvn3LZjpVfsViz/51PVOtnpt9GYHK6by8jvX+koFOTD+TMxscU27phybsu/pFtJgUJ56j3NEEkqij0tcRp2R6aBNKHB22cHpGzqqa85ZZRpmUL3m+VH9Tv/F/c2iQeT8uoZEGaucMQO3TxPR25CtsB4oYordhOO22d/w9flWUx1oXnXDkI4ae4RaAD6zMmmm3x/4tVUmAc99v8bO3CizpCuCTi4w08/Cw="
+  - secure: "g6hicpL634F6A3LtXkpXzw51sd4r9GgQhju6FfOiCDaueTpH+HJr9BFHE9ULnlyQeZRq+qVQ/aV1kSGSaCSv7XYTfmtwNphb+jgKJbUk3x/0Eroi0u705b+pPApj9Eqrl3KvpLyUUMUnCKfEf+oZ/SNvCo0wUh60Eabq/fBWHLJolnqQys2BBRuvzFOjRQC2ZTrx0Kwi00evqSVnazOCYD51OT9EiCuTGXOxKeaeFlH/8TSIbA2bWI8lKUwjEI+4pXKAR6QAY/MKKFdbOWK0EZHU7IrLSq2GBhUN4dVx1BtiiXRuP9Q5C4BEj7ZcGIqyqqn2OauGwSx36qifvRuXAMTrncTOW0W7q51GOKa1erj9eF/DmPuhLzWoLps3ynopPe4Od2uX0FQRSoQuiUVyiCGogYKR0b1vc93NtIO39sVU+hBxCda0LZdgeDev6aTKepcs1Y4DzQGfTpzt5O4M7J82Z7GdlCCsyrgpoX58QF0C6KZCby1Gq/pmk7YpnqQHzVWxofFtrlE/cgiLpaOsVr67/XUJK2daig/EXXFgT2I1nT31/gn8suT2bwQ68tStdB8AQkewt5ECEN+JNfXY3l18jxm7K76uUw44kGPXbJzX+obnLwuqUU968MVVNrwQVlPD149AbHmkT1gxnYwehh/hETj9n7BD+kehLMovVC4="
