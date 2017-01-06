@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+DOCKER_TAG="ptdorf/ping:${TRAVIS_TAG:-latest}"
+
+if [ "$TRAVIS_BRANCH" == "master" ]
+then
+  echo "Tagging image with ${DOCKER_TAG}."
+  docker tag ping ${DOCKER_TAG}
+  docker push ${DOCKER_TAG}
+fi
+
+if [ "$TRAVIS_TAG" != "" ]
+then
+  echo "Tagging image with ${DOCKER_TAG}."
+  docker tag ping ${DOCKER_TAG}
+  docker push ${DOCKER_TAG}
+fi
