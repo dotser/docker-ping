@@ -18,4 +18,4 @@ script:
   - docker run ping google.com
 
 after_success:
-  - ./travis/deploy
+  - ./script/deploy
