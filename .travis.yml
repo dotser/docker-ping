@@ -6,7 +6,7 @@ services:
 
 before_install:
   - docker version
-  - docker build -t ping .
+  - docker build -t ptdorf/ping .
 
 script:
-  - docker run ping google.com
+  - docker run ptdorf/ping google.com
