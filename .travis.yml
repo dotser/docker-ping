@@ -11,14 +11,15 @@ env:
 
 before_install:
   - docker version
-  - docker build -t ptdorf/ping .
+  - docker build -t ping .
 
 script:
-  - docker run ptdorf/ping google.com
+  - docker run ping google.com
 
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
     docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-    docker tag ptdorf/ping ptdorf/ping:${TRAVIS_TAG:-latest};
-    docker push ptdorf/ping:${TRAVIS_TAG:-latest};
+    DOCKER_TAG="ptdorf/ping:${TRAVIS_TAG:-latest}";
+    docker tag ping ${DOCKER_TAG};
+    docker push ${DOCKER_TAG};
     fi
