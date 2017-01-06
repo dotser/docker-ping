@@ -21,7 +21,7 @@ after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
     docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
     DOCKER_TAG="ptdorf/ping:${TRAVIS_TAG:-latest}";
-    echo ${DOCKER_TAG};
+    echo "Tagging image with ${DOCKER_TAG}.";
     docker tag ping ${DOCKER_TAG};
     docker push ${DOCKER_TAG};
     fi
